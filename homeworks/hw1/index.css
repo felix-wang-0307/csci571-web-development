@@ -1,0 +1,142 @@
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Header styles */
+/* width: 1600px; height: 120px; */
+header {
+  width: 1600px;
+  height: 120px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  display: block;
+}
+
+header .menu-text {
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+  top: 40px;
+  left: 200px;
+  display: inline-block;
+}
+
+header ul.hyperlinks {
+  position: relative;
+  top: 40px;
+  left: 1000px;
+  display: inline-block;
+}
+
+header ul.hyperlinks li {
+  font-size: 16px;
+  display: inline;
+  margin-right: 30px;
+}
+
+header ul.hyperlinks li a {
+  color: gray;
+  font-weight: 300;
+}
+
+/* Main styles */
+/* width: 1600px; height: 853px; */
+main {
+  display: block;
+  top: 120px;
+  position: absolute;
+  height: 853px;
+  width: 1600px;
+}
+
+.background-image {
+  background-image: url("./images/lawyer.jpg");
+  height: 853px;
+  width: 1600px;
+  z-index: 1;
+}
+
+.content-box {
+  position: relative;
+  top: 150px;
+  left: 200px;
+  background-color: #1b3b5b;
+  padding: 30px;
+  color: white;
+  text-align: left;
+  width: 400px;
+}
+
+.content-box h2 {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase; /* Capitalize all letters */
+  margin-bottom: 10px;
+}
+
+.content-box h1 {
+  font-size: 40px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+}
+
+.content-box p {
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-style: italic;
+  margin-top: 10px;
+  color: #f5de4e;
+}
+
+.content-box .input-box {
+  width: 340px;
+  margin-bottom: 20px;
+  border: none;
+  resize: none;  /* Prevent user's resizing */
+  outline: none;  /* disable focused style */
+}
+
+.content-box button {
+  width: 200px;
+  margin-bottom: 50px;
+  padding: 14px 8px;
+  background-color: #f5de4e;
+  border: none;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: black;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Amazing feature styles */
+.amazing-features {
+  position: absolute;
+  top: 973px;
+  left: 0;
+  width: 1600px;
+  height: 800px;
+  padding: 30px;
+  background-color: white;
+  color: black;
+}
