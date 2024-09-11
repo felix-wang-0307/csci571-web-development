@@ -135,8 +135,34 @@ main {
   top: 973px;
   left: 0;
   width: 1600px;
-  height: 800px;
+  height: 300px;
   padding: 30px;
+  margin: 150px 0;
   background-color: white;
-  color: black;
+}
+
+.amazing-features .feature:first-child {
+  margin-left: 175px;
+}
+
+.amazing-features .feature {
+  display: inline-block;
+  width: 350px;
+  height: 400px;
+  margin-left: 50px;
+}
+
+.amazing-features h3 {
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 20px;
+}
+
+.amazing-features p {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 300;
+  margin-bottom: 20px;
 }
