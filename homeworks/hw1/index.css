@@ -111,8 +111,8 @@ main {
   width: 340px;
   margin-bottom: 20px;
   border: none;
-  resize: none;  /* Prevent user's resizing */
-  outline: none;  /* disable focused style */
+  resize: none; /* Prevent user's resizing */
+  outline: none; /* disable focused style */
 }
 
 .content-box button {
@@ -130,14 +130,14 @@ main {
 }
 
 /* Amazing feature styles */
-/* width: 1600px, height: 700px; */
+/* width: 1600px, height: 450px; */
 .amazing-features {
   position: absolute;
   top: 973px;
   left: 0;
   width: 1600px;
-  height: 700px;
-  padding: 150px 0;
+  height: 450px;
+  padding: 150px 0 100px 0; /* top right bottom left */
   background-color: white;
 }
 
@@ -148,7 +148,7 @@ main {
 .amazing-features .feature {
   display: inline-block;
   width: 350px;
-  height: 400px;
+  height: 200px;
   margin-left: 50px;
 }
 
@@ -164,6 +164,37 @@ main {
   font-size: 14px;
   line-height: 1.5;
   font-weight: 300;
+}
+
+/* Quote styles */
+/* height: 400px; */
+.quote {
+  background-color: #f4f4f4;
+  width: 1600px;
+  height: 400px;
+  padding: 150px 0;
+  position: relative;
+  top: 1423px;
+  left: 0;
+}
+
+.quote blockquote {
+  width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.quote blockquote section {
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  color: #1b3b5b;
   margin-bottom: 20px;
 }
 
+.quote blockquote footer span {
+  font-size: 16px;
+  font-weight: 300;
+  color: grey;
+}
