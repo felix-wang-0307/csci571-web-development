@@ -130,19 +130,19 @@ main {
 }
 
 /* Amazing feature styles */
+/* width: 1600px, height: 700px; */
 .amazing-features {
   position: absolute;
   top: 973px;
   left: 0;
   width: 1600px;
-  height: 300px;
-  padding: 30px;
-  margin: 150px 0;
+  height: 700px;
+  padding: 150px 0;
   background-color: white;
 }
 
 .amazing-features .feature:first-child {
-  margin-left: 175px;
+  margin-left: 200px;
 }
 
 .amazing-features .feature {
@@ -166,3 +166,4 @@ main {
   font-weight: 300;
   margin-bottom: 20px;
 }
+
