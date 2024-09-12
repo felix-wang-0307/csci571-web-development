@@ -66,14 +66,14 @@ main {
   width: 1600px;
 }
 
-.background-image {
+main .background-image {
   background-image: url("./images/lawyer.jpg");
   height: 853px;
   width: 1600px;
   z-index: 1;
 }
 
-.content-box {
+main .content-box {
   position: relative;
   top: 150px;
   left: 200px;
@@ -84,7 +84,7 @@ main {
   width: 400px;
 }
 
-.content-box h2 {
+main .content-box h2 {
   font-size: 16px;
   font-weight: 400;
   font-family: "Montserrat", sans-serif;
@@ -92,14 +92,14 @@ main {
   margin-bottom: 10px;
 }
 
-.content-box h1 {
+main .content-box h1 {
   font-size: 40px;
   font-weight: 500;
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
 }
 
-.content-box p {
+main .content-box p {
   font-size: 14px;
   margin-bottom: 20px;
   font-style: italic;
@@ -107,7 +107,7 @@ main {
   color: #f5de4e;
 }
 
-.content-box .input-box {
+main .content-box .input-box {
   width: 340px;
   margin-bottom: 20px;
   border: none;
@@ -115,7 +115,7 @@ main {
   outline: none; /* disable focused style */
 }
 
-.content-box button {
+main .content-box button {
   width: 200px;
   margin-bottom: 50px;
   padding: 14px 8px;
@@ -173,7 +173,7 @@ main {
   width: 1600px;
   height: 400px;
   padding: 150px 0;
-  position: relative;
+  position: absolute;
   top: 1423px;
   left: 0;
 }
@@ -197,4 +197,120 @@ main {
   font-size: 16px;
   font-weight: 300;
   color: grey;
+}
+
+/* Pricing styles */
+.pricing {
+  position: absolute;
+  top: 1823px;
+  left: 0;
+  width: 1600px;
+  height: 750px;
+}
+
+.pricing .background-image {
+  position: relative;
+  height: 750px;
+  width: 1600px;
+  z-index: 1;
+}
+
+.pricing .background-image::after {
+  content: "";
+  background-image: url("./images/glasses.png");
+  background-size: cover;
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.pricing .plan-card {
+  position: relative;
+  display: inline-block;
+  top: 150px;
+  left: 300px;
+  text-align: center;
+  height: 500px;
+  width: 300px;
+  margin-right: 50px;
+}
+
+.pricing .plan-card .plan-card-background {
+  height: 500px;
+  width: 300px;
+  padding: 60px 20px 40px 20px; /* top right bottom left */
+  z-index: 2;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(
+      to top left,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) calc(50% - 0.8px),
+      rgba(0, 0, 0, 0.05) 50%,
+      rgba(0, 0, 0, 0) calc(50% + 0.8px),
+      rgba(0, 0, 0, 0) 100%
+    ),
+    linear-gradient(
+      to top right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) calc(50% - 0.8px),
+      rgba(0, 0, 0, 0.05) 50%,
+      rgba(0, 0, 0, 0) calc(50% + 0.8px),
+      rgba(0, 0, 0, 0) 100%
+    );
+  background-size: 20px 20px, 20px 20px, 40px 40px, 40px 40px; 
+  /* the diagnal lines are more sparse than the horizontal and vertical lines */
+}
+
+.pricing .plan-card .plan-title {
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -1px;
+  z-index: 3;
+  margin-bottom: 20px;
+}
+
+.pricing .plan-card ul li {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  color: #6f6f6f;
+  margin-bottom: 16px;
+}
+
+
+.pricing .plan-card ul {
+  display: inline-block;
+  margin-bottom: 40px;
+}
+
+.pricing .plan-card h2 {
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.pricing .plan-card button {
+  margin-top: 40px;
+  width: 140px;
+  padding: 18px 8px;
+  background-color: #1b3b5b;
+  border: none;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
 }
