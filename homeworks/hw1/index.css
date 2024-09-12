@@ -200,6 +200,7 @@ main .content-box button {
 }
 
 /* Pricing styles */
+/* height: 750px; */
 .pricing {
   position: absolute;
   top: 1823px;
@@ -310,6 +311,63 @@ main .content-box button {
   font-size: 13px;
   letter-spacing: 1px;
   color: white;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* trail styles */
+.trail {
+  position: absolute;
+  top: 2573px;
+  left: 0;
+  width: 1600px;
+  height: 450px;
+  background-color: #29547f;
+  color: white;
+  text-align: center;
+}
+
+.trail .trail-background {
+  position: relative;
+  width: 1600px;
+  height: 450px;
+  padding: 150px 0 100px 0; /* top right bottom left */
+  z-index: 1;
+}
+
+.trail .trail-background::after {
+  content: "";
+  background-image: url("./images/notebook.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.trail h3 {
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.trail button {
+  width: 200px;
+  margin-top: 40px;
+  padding: 14px 8px;
+  background-color: #f5de4e;
+  border: none;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: black;
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   cursor: pointer;
