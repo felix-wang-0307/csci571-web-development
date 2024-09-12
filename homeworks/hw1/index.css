@@ -184,7 +184,7 @@ main .content-box button {
   text-align: center;
 }
 
-.quote blockquote section {
+.quote blockquote .quoted-sentence {
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
   font-size: 24px;
@@ -193,7 +193,7 @@ main .content-box button {
   margin-bottom: 20px;
 }
 
-.quote blockquote footer span {
+.quote blockquote .founder span {
   font-size: 16px;
   font-weight: 300;
   color: grey;
@@ -371,4 +371,18 @@ main .content-box button {
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+/* footer styles */
+/* height: 100px; */
+footer {
+  position: absolute;
+  top: 3023px;
+  left: 0;
+  width: 1600px;
+  height: 100px;
+  background-color: #1f252f;
+  color: white;
+  text-align: center;
+  padding-top: 40px;
 }
