@@ -15,6 +15,7 @@ ul {
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 /* Header styles */
@@ -54,6 +55,10 @@ header ul.hyperlinks li {
 header ul.hyperlinks li a {
   color: gray;
   font-weight: 300;
+}
+
+header ul.hyperlinks li a:hover {
+  color: #1b3b5b;
 }
 
 /* Main styles */
