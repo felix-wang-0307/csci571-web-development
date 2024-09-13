@@ -18,6 +18,19 @@ a {
   cursor: pointer;
 }
 
+/* Glasses background styles */
+.glasses-background {
+  background-image: url("./images/glasses.png");
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1600px;
+  height: 1111px;
+  z-index: -1;
+  opacity: 0.2;
+}
+
+
 /* Header styles */
 /* width: 1600px; height: 120px; */
 header {
@@ -212,27 +225,11 @@ main .content-box button {
   left: 0;
   width: 1600px;
   height: 750px;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 1; /* Adjusted to ensure visibility */
+  background: none;
 }
 
-.pricing .background-image {
-  position: relative;
-  height: 750px;
-  width: 1600px;
-  z-index: 1;
-}
-
-.pricing .background-image::after {
-  content: "";
-  background-image: url("./images/glasses.png");
-  background-size: cover;
-  opacity: 0.2;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-}
 
 .pricing .plan-card {
   position: relative;
