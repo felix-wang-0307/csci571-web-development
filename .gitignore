@@ -137,6 +137,8 @@ dist
 *.zip
 
 # Python venv
-venv
 env
-.venv
+*venv
+
+# test
+*_test
