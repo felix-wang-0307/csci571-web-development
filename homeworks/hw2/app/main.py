@@ -1,40 +1,17 @@
-import datetime
-
-from flask import Flask, render_template
+from flask import Flask
 from google.cloud import datastore
+import json
 
 app = Flask(__name__)
-
+datastore_client = datastore.Client()
 
 @app.route("/")
 def root():
-    # Store the current access time in Datastore.
-    store_time(datetime.datetime.now(tz=datetime.timezone.utc))
+    return json.dumps({"success": True, "data": {"a": 2}})
 
-    # Fetch the most recent 10 access times from Datastore.
-    times = fetch_times(10)
-
-    return render_template("index.html", times=times)
-
-
-datastore_client = datastore.Client()
-
-
-def store_time(dt):
-    entity = datastore.Entity(key=datastore_client.key("visit"))
-    entity.update({"timestamp": dt})
-
-    datastore_client.put(entity)
-
-
-def fetch_times(limit):
-    query = datastore_client.query(kind="visit")
-    query.order = ["-timestamp"]
-
-    times = query.fetch(limit=limit)
-
-    return times
-
+@app.route("/api/v1/data")
+def get_data():
+    return json.dumps({"success": True, "data": {"a": 2}})
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
