@@ -139,3 +139,4 @@ dist
 # Python venv
 venv
 env
+.venv
