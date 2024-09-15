@@ -132,9 +132,9 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# certain pdfs
-*.pdf
+# certain file types and directories
 *.zip
+slides
 
 # Python venv
 env
