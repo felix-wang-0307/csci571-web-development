@@ -10,16 +10,40 @@ with open('./static/states.json') as f:
 
 @app.route("/")
 def root():
-    return jsonify(
-        {
-            "success": True,
-            "data": {"text": "this is a sample text"},
-            "apis": [
-                "GET /weather?latitude={latitude}&longitude={longitude}",
-                "GET /address?address={address}",
-            ],
-        }
-    )
+    return """
+    <html>
+        <head>
+            <script type="text/javascript">
+                let countdown = 3;
+                setInterval(function() {
+                    if (countdown > 0) {
+                        document.getElementById('countdown').innerText = countdown;
+                        countdown--;
+                    } else {
+                        window.location.href = "/static/index.html";
+                    }
+                }, 1000);
+            </script>
+        </head>
+        <body>
+            <p>This is the backend server. You will be redirected to the frontend homepage in <span id="countdown">3</span> seconds.</p>
+        </body>
+    </html>
+    """
+
+# @app.route("/")
+# def root():
+    
+#     return jsonify(
+#         {
+#             "success": True,
+#             "data": {"text": "this is a sample text"},
+#             "apis": [
+#                 "GET /weather?latitude={latitude}&longitude={longitude}",
+#                 "GET /address?address={address}",
+#             ],
+#         }
+#     )
 
 @app.route("/query", methods=["GET"])
 def query():
