@@ -15,5 +15,12 @@
 
 # Python pycache:
 __pycache__/
+
+# PyCharm cache
+.idea
+
 # Ignored by the build system
 /setup.cfg
+
+*venv
+node_modules
