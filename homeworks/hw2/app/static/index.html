@@ -1,56 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="form.css">
-  <title>Weather Search</title>
-</head>
-<body>
-  <article id="weather-form">
-    <header class="banner">
-      <h1>Weather Search</h1>
-      <p>Fill out the form to get weather info!</p>
-    </header>
-    <form>
-      <div class="form-group">
-        <label for="street">Street</label>
-        <input type="text" id="street" name="street">
-      </div>
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" id="city" name="city">
-      </div>
-      <div class="form-group">
-        <label for="state">State</label>
-        <select id="state" name="state">
-          <script>
-            fetch('states.json')
-              .then(response => response.json())
-              .then(states => {
-                const select = document.getElementById('state');
-                states.forEach(state => {
-                  const option = document.createElement('option');
-                  option.value = state.abbreviation;
-                  option.textContent = state.name;
-                  select.appendChild(option);
-                });
-              })
-              .catch(error => console.error('Error fetching states:', error));
-          </script>
-        </select>
-      </div>
-      <div class="line"></div>
-      <div class="form-group">
-        <span>Want us to auto-detect your location? Check here</span>
-        <input type="checkbox" id="auto-detect" name="auto-detect">
-      </div>
-      <div class="form-group">
-        <button type="submit" class="form-button submit-button">SUBMIT</button>
-        <button type="reset" class="form-button clear-button">CLEAR</button>
-      </div>
-    </form>
-  </article>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/form.css" />
+    <title>Weather Search</title>
+  </head>
+  <body>
+    <article id="weather-form">
+      <header class="banner">
+        <h1>Weather Search</h1>
+        <p>Fill out the form to get weather info!</p>
+      </header>
+      <form class="form-container">
+        <div class="form-group street-item">
+          <label for="street">Street</label>
+          <input type="text" id="street" name="street" />
+        </div>
+        <div class="city-and-state">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" />
+          </div>
+          <div class="form-group">
+            <label for="state">State<span class="star"></span></label>
+            <select id="state" name="state">
+              <script>
+                // Fetch states from JSON file and populate select element
+                const select = document.getElementById("state");
+                fetch("states.json")
+                  .then((response) => response.json())
+                  .then((states) => {
+                    for (const [name, abbreviation] of Object.entries(states)) {
+                      const option = document.createElement("option");
+                      option.value = abbreviation;
+                      option.textContent = name;
+                      select.appendChild(option);
+                    }
+                  })
+                  .catch((error) =>
+                    console.error("Error fetching states:", error)
+                  );
+                  const defaultOption = document.createElement("option");
+                  defaultOption.value = "";
+                  defaultOption.textContent = "Select your state";
+                  defaultOption.selected = true;
+                  defaultOption.disabled = true;
+                  select.appendChild(defaultOption);
+              </script>
+            </select>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="form-group auto-detect-area">
+          <span>Want us to auto-detect your location? Check here</span>
+          <input type="checkbox" id="auto-detect" name="auto-detect" />
+        </div>
+        <div class="form-group form-buttons">
+          <button type="submit" class="form-button submit-button">
+            SUBMIT
+          </button>
+          <button type="reset" class="form-button clear-button">CLEAR</button>
+        </div>
+      </form>
+    </article>
+  </body>
 </html>

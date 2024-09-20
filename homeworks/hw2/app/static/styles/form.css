@@ -1,0 +1,113 @@
+#weather-form {
+  width: 700px;
+  margin-top: 16px;
+  border: 1px solid lightgrey;
+  background-color: white;
+}
+
+#weather-form .banner {
+  background-image: url("../images/banner.jpg");
+  background-size: cover;
+  background-position: top;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-bottom: 16px;
+}
+
+#weather-form .banner h1 {
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+
+#weather-form .banner p {
+  color: black;
+  font-size: 16px;
+}
+
+#weather-form .form-container {
+  padding: 20px 30px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: inline-flex; 
+  font-size: 16px;
+  color: #7887c3;
+  font-weight: bold;
+  margin-bottom: 8px;
+  align-items: center; 
+}
+
+.form-group label::after {
+  content: "*";
+  color: coral;
+  font-size: 16px;  
+  margin-left: 2px; 
+  line-height: normal; 
+}
+
+.form-group input[type="text"], .form-group select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid lightgrey;
+}
+
+.city-and-state {
+  display: flex;
+  justify-content: space-between;
+}
+
+.city-and-state .form-group {
+  width: 48%;
+}
+
+.line {
+  height: 2px;
+  background-color: #7887c3;
+  margin: 16px 0;
+}
+
+.auto-detect-area { 
+  color: #7887c3;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px; /* Adds space between the buttons */
+}
+
+.form-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: lighter;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.submit-button {
+  background-color: #4169e1; /* Blue color */
+  box-shadow: 0px 5px 0px #384a75; /* Adds a shadow */
+  
+}
+
+.clear-button {
+  background-color: #ffb400; /* Orange color */
+  box-shadow: 0px 5px 0px #ef8933; /* Adds a shadow */
+}
+
+.form-button:hover {
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Adds a deeper shadow on hover */
+}
+
+.form-button:active {
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Reduces the shadow when clicked */
+}
