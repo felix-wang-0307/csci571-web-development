@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/form.css" />
+    <script src="scripts/form.js" defer></script>
     <title>Weather Search</title>
   </head>
   <body>
@@ -13,7 +14,7 @@
         <h1>Weather Search</h1>
         <p>Fill out the form to get weather info!</p>
       </header>
-      <form class="form-container">
+      <form class="form-container" onsubmit="submitForm(event)" onreset="clearForm()">
         <div class="form-group street-item">
           <label for="street">Street</label>
           <input type="text" id="street" name="street" />
@@ -46,7 +47,6 @@
                   defaultOption.value = "";
                   defaultOption.textContent = "Select your state";
                   defaultOption.selected = true;
-                  defaultOption.disabled = true;
                   select.appendChild(defaultOption);
               </script>
             </select>
@@ -61,7 +61,9 @@
           <button type="submit" class="form-button submit-button">
             SUBMIT
           </button>
-          <button type="reset" class="form-button clear-button">CLEAR</button>
+          <button type="reset" class="form-button clear-button">
+            CLEAR
+          </button>
         </div>
       </form>
     </article>
