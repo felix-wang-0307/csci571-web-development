@@ -32,10 +32,11 @@ def get_weather(latitude, longitude):
     return json.dumps({"success": True, "data": response.json()})
 
 
-def get_address_coordinates(address):
+def get_geocode_info(address):
     response = requests.get(
         GOOGLE_MAPS_API,
         params={"address": address, "key": os.getenv("GOOGLE_MAPS_API_KEY")},
+        headers={"Accept-language": "en"},
     )
 
     if response.status_code != 200:
@@ -44,10 +45,15 @@ def get_address_coordinates(address):
             500,
         )
 
-    coordinates = response.json().get("results")[0].get("geometry").get("location")
-    return json.dumps({"success": True, "data": coordinates})
+    data = response.json().get("results")[0]
+    coordinates = data.get("geometry").get("location")
+    formatted_address = data.get("formatted_address")
+    return json.dumps({"success": True, "data": {
+        "coordinates": coordinates,
+        "formatted_address": formatted_address
+    }})
 
 
 if __name__ == "__main__":
     print(get_weather(34.0522, -118.2437))
-    print(get_address_coordinates("University of Southern California"))
+    print(get_geocode_info("University of Southern California"))

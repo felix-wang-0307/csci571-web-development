@@ -65,7 +65,7 @@ def weather_controller():
 @app.route("/geocoding", methods=["GET"])
 def geocoding_controller():
     address = request.args.get("address")
-    return service.get_address_coordinates(address)
+    return service.get_geocode_info(address)
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
