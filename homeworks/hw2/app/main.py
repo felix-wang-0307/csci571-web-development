@@ -8,6 +8,7 @@ WEATHER_API = "https://api.tomorrow.io/v4/weather/forecast"
 with open('./static/states.json') as f:
     STATE_ABBREVIATIONS = json.load(f)
 
+
 @app.route("/")
 def root():
     return """
@@ -31,9 +32,10 @@ def root():
     </html>
     """
 
+
 # @app.route("/")
 # def root():
-    
+
 #     return jsonify(
 #         {
 #             "success": True,
@@ -52,9 +54,11 @@ def query():
     state = request.args.get("state")
     return jsonify({"success": True, "data": request.args})
 
+
 @app.route("/state_list", methods=["GET"])
 def state_list_controller():
     return jsonify({"success": True, "data": STATE_ABBREVIATIONS})
+
 
 @app.route("/weather", methods=["GET"])
 def weather_controller():
@@ -62,10 +66,12 @@ def weather_controller():
     longitude = request.args.get("longitude")
     return service.get_weather(latitude, longitude)
 
+
 @app.route("/geocoding", methods=["GET"])
 def geocoding_controller():
     address = request.args.get("address")
     return service.get_geocode_info(address)
+
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)

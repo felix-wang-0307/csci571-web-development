@@ -5,9 +5,9 @@ export async function fetchData(street, city, state, autoDetect) {
     return { locationString, weather };
   } else {
     const geocoding = await fetchGeocoding(street, city, state);
-    const { latitude, longitude } = geocoding;
+    const { latitude, longitude, formatted_address } = geocoding;
     const weather = await fetchWeather(latitude, longitude);
-    return { locationString: `${street}, ${city}, ${state}`, weather };
+    return { locationString: formatted_address, weather };
   }
 }
 
@@ -21,7 +21,7 @@ async function fetchIpInfo() {
 
 async function fetchGeocoding(street, city, state) {
   const address = `${street}, ${city}, ${state}`;
-  const url = `/geocoding?address=${address}`;
+  const url = `../../geocoding?address=${address}`;
   const data = await fetch(url).then(response => {
       if (!response.success) {
         throw new Error('Failed to fetch geocoding data');
@@ -32,7 +32,7 @@ async function fetchGeocoding(street, city, state) {
 }
 
 async function fetchWeather(latitude, longitude) {
-  const url = `/weather?latitude=${latitude}&longitude=${longitude}`;
+  const url = `../../weather?latitude=${latitude}&longitude=${longitude}`;
   const data = await fetch(url).then(response => {
       if (!response.success) {
         throw new Error('Failed to fetch weather data');

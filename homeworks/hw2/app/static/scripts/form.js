@@ -1,3 +1,4 @@
+import { fetchData } from "./fetchData.js";
 
 function getFormItems() {
   const street = document.getElementById('street').value;
@@ -8,18 +9,24 @@ function getFormItems() {
 }
 
 function submitForm(event) {
-  event.preventDefault();
-  const street = document.getElementById('street').value;
-  const city = document.getElementById('city').value;
-  const state = document.getElementById('state').value;
-  const autoDetect = document.getElementById('auto-detect').checked;
+  event.preventDefault(); // Prevent the default form submission behavior
+  console.log("Form submitted");
+
+  const { street, city, state, autoDetect } = getFormItems();
 
   console.log('Street:', street);
   console.log('City:', city);
   console.log('State:', state);
   console.log('Auto-detect:', autoDetect);
 
-  // You can now use these values to perform further actions, such as sending them to a server
+  fetchData(street, city, state, autoDetect)
+    .then(({ locationString, weather }) => {
+      console.log('Location:', locationString);
+      console.log('Weather:', weather);
+    })
+    .catch(error => {
+      console.error('Failed to fetch data:', error);
+    });
 }
 
 function clearForm() {
