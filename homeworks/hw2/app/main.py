@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import json
 import service
 
@@ -10,42 +10,15 @@ with open('./static/states.json') as f:
 
 
 @app.route("/")
+@app.route("/index")
 def root():
-    return """
-    <html>
-        <head>
-            <script type="text/javascript">
-                let countdown = 3;
-                setInterval(function() {
-                    if (countdown > 0) {
-                        document.getElementById('countdown').innerText = countdown;
-                        countdown--;
-                    } else {
-                        window.location.href = "/static/index.html";
-                    }
-                }, 1000);
-            </script>
-        </head>
-        <body>
-            <p>This is the backend server. You will be redirected to the frontend homepage in <span id="countdown">3</span> seconds.</p>
-        </body>
-    </html>
-    """
+    return send_from_directory("static", "index.html")
 
 
-# @app.route("/")
-# def root():
+@app.route("/<path:path>")
+def static_files(path):
+    return send_from_directory("static", path)
 
-#     return jsonify(
-#         {
-#             "success": True,
-#             "data": {"text": "this is a sample text"},
-#             "apis": [
-#                 "GET /weather?latitude={latitude}&longitude={longitude}",
-#                 "GET /address?address={address}",
-#             ],
-#         }
-#     )
 
 @app.route("/query", methods=["GET"])
 def query():
