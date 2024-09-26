@@ -5,15 +5,16 @@ import os
 
 load_dotenv()
 
-WEATHER_API = "https://api.tomorrow.io/v4/weather/forecast"
+WEATHER_API = "https://api.tomorrow.io/v4/timelines"
 GOOGLE_MAPS_API = "https://maps.googleapis.com/maps/api/geocode/json"
 
 
-def get_weather(latitude, longitude):
+def get_weather(latitude, longitude, args=None):
 	"""
 	Get weather data from Tomorrow.io API.
-	API Docs: https://www.tomorrow.io/weather-api/docs/
+	API Docs: https://docs.tomorrow.io/reference/get-timelines
 	"""
+	print("Incoming request for weather data", latitude, longitude)
 	if latitude is None or longitude is None:
 		return (
 			json.dumps({"success": False, "error": "Missing latitude or longitude"}),
@@ -25,6 +26,9 @@ def get_weather(latitude, longitude):
 		params={
 			"location": f"{latitude},{longitude}",
 			"apikey": os.getenv("TOMORROW_API_KEY"),
+			"units": "imperial",
+			"timesteps": ["current", "1h", "1d"],
+			"timezone": "America/Los_Angeles",
 		},
 	)
 
@@ -38,6 +42,9 @@ def get_weather(latitude, longitude):
 
 
 def get_geocode_info(address):
+	"""
+	Get geocode information from Google Maps API.
+	"""
 	response = requests.get(
 		GOOGLE_MAPS_API,
 		params={"address": address, "key": os.getenv("GOOGLE_MAPS_API_KEY")},
@@ -54,7 +61,8 @@ def get_geocode_info(address):
 	coordinates = data.get("geometry").get("location")
 	formatted_address = data.get("formatted_address")
 	return json.dumps({"success": True, "data": {
-		"coordinates": coordinates,
+		"latitude": coordinates.get("lat"),
+		"longitude": coordinates.get("lng"),
 		"formatted_address": formatted_address
 	}})
 

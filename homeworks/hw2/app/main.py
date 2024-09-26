@@ -37,7 +37,10 @@ def state_list_controller():
 def weather_controller():
     latitude = request.args.get("latitude")
     longitude = request.args.get("longitude")
-    return service.get_weather(latitude, longitude)
+    args = request.args
+    args.pop("latitude")
+    args.pop("longitude")
+    return service.get_weather(latitude, longitude, args)
 
 
 @app.route("/geocoding", methods=["GET"])
