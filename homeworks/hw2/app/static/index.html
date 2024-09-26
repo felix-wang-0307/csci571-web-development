@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="stylesheet" href="styles/form.css" />
-    <script type="module" src="scripts/form.js" defer></script>
-    <title>Weather Search</title>
-  </head>
-  <body>
-    <article id="weather-form">
-      <header class="banner">
-        <h1>Weather Search</h1>
-        <p>Fill out the form to get weather info!</p>
-      </header>
-      <form class="form-container" onsubmit="submitForm(event)" onreset="clearForm()">
-        <div class="form-group street-item">
-          <label for="street">Street</label>
-          <input type="text" id="street" name="street" required/>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styles/global.css"/>
+  <link rel="stylesheet" href="styles/form.css"/>
+  <link rel="stylesheet" href="styles/weather-display.css"/>
+  <script type="module" src="scripts/index.js" defer></script>
+  <title>Weather Search</title>
+</head>
+<body>
+<div>
+  <article id="weather-form-area">
+    <header class="banner">
+      <h1>Weather Search</h1>
+      <p>Fill out the form to get weather info!</p>
+    </header>
+    <form id="weather-form" class="form-container" onreset="clearForm()">
+      <div class="form-group street-item">
+        <label for="street">Street</label>
+        <input type="text" id="street" name="street" required/>
+      </div>
+      <div class="city-and-state">
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" required/>
         </div>
-        <div class="city-and-state">
-          <div class="form-group">
-            <label for="city">City</label>
-            <input type="text" id="city" name="city" required/>
-          </div>
-          <div class="form-group">
-            <label for="state">State<span class="star"></span></label>
-            <select id="state" name="state" required>
-              <script>
-                // Fetch states from JSON file and populate select element
-                const select = document.getElementById("state");
-                fetch("states.json")
+        <div class="form-group">
+          <label for="state">State<span class="star"></span></label>
+          <select id="state" name="state" required>
+            <script>
+              // Fetch states from JSON file and populate select element
+              const select = document.getElementById("state");
+              fetch("states.json")
                   .then((response) => response.json())
                   .then((states) => {
                     for (const [name, abbreviation] of Object.entries(states)) {
@@ -41,31 +43,36 @@
                     }
                   })
                   .catch((error) =>
-                    console.error("Error fetching states:", error)
+                      console.error("Error fetching states:", error)
                   );
-                  const defaultOption = document.createElement("option");
-                  defaultOption.value = "";
-                  defaultOption.textContent = "Select your state";
-                  defaultOption.selected = true;
-                  select.appendChild(defaultOption);
-              </script>
-            </select>
-          </div>
+              const defaultOption = document.createElement("option");
+              defaultOption.value = "";
+              defaultOption.textContent = "Select your state";
+              defaultOption.selected = true;
+              select.appendChild(defaultOption);
+            </script>
+          </select>
         </div>
-        <div class="line"></div>
-        <div class="form-group auto-detect-area">
-          <span>Want us to auto-detect your location? Check here</span>
-          <input type="checkbox" id="auto-detect" name="auto-detect" onclick="toggleAutoDetect()"/>
-        </div>
-        <div class="form-group form-buttons">
-          <button type="submit" class="form-button submit-button">
-            SUBMIT
-          </button>
-          <button type="reset" class="form-button clear-button">
-            CLEAR
-          </button>
-        </div>
-      </form>
-    </article>
-  </body>
+      </div>
+      <div class="line"></div>
+      <div class="form-group auto-detect-area">
+        <span>Want us to auto-detect your location? Check here</span>
+        <input type="checkbox" id="auto-detect" name="auto-detect"/>
+      </div>
+      <div class="form-group form-buttons">
+        <button type="submit" class="form-button submit-button">
+          SUBMIT
+        </button>
+        <button type="reset" class="form-button clear-button">
+          CLEAR
+        </button>
+      </div>
+    </form>
+  </article>
+
+  <article id="weather-display">
+
+  </article>
+</div>
+</body>
 </html>
