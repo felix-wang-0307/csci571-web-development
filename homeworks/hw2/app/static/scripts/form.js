@@ -8,7 +8,7 @@ function getFormItems() {
   return { street, city, state, autoDetect };
 }
 
-function submitForm(event) {
+export function submitForm(event) {
   event.preventDefault(); // Prevent the default form submission behavior
   console.log("Form submitted");
 
@@ -19,18 +19,21 @@ function submitForm(event) {
   console.log('State:', state);
   console.log('Auto-detect:', autoDetect);
 
+  const weatherDisplay = document.getElementById("weather-display");
+  weatherDisplay.style.display = "block";
+
   fetchData(street, city, state, autoDetect)
     .then(({ locationString, weather }) => {
       console.log('Location:', locationString);
       console.log('Weather:', weather);
     })
     .catch(error => {
-      console.error('Failed to fetch data:', error);
+      console.error(error);
+      weatherDisplay.innerHTML = "No records have been found.";
     });
 }
 
-function clearForm() {
-  console.log("Clearing form");
+export function clearForm() {
   document.getElementById('street').value = '';
   document.getElementById('city').value = '';
   document.getElementById('state').value = '';
@@ -38,7 +41,7 @@ function clearForm() {
   toggleAutoDetect();
 }
 
-function toggleAutoDetect() {
+export function toggleAutoDetect() {
   const isAutoDetect = document.getElementById('auto-detect').checked;
   const street = document.getElementById('street');
   const city = document.getElementById('city');
@@ -48,3 +51,4 @@ function toggleAutoDetect() {
   city.disabled = isAutoDetect;
   state.disabled = isAutoDetect;
 }
+

@@ -1,4 +1,4 @@
-#weather-form {
+#weather-form-area {
   width: 700px;
   margin-top: 16px;
   border: 1px solid lightgrey;
@@ -6,7 +6,7 @@
   background-color: white;
 }
 
-#weather-form .banner {
+#weather-form-area .banner {
   background-image: url("../images/banner.jpg");
   background-size: cover;
   background-position: top;
@@ -15,19 +15,19 @@
   padding-bottom: 16px;
 }
 
-#weather-form .banner h1 {
+#weather-form-area .banner h1 {
   color: black;
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 14px;
 }
 
-#weather-form .banner p {
+#weather-form-area .banner p {
   color: black;
   font-size: 16px;
 }
 
-#weather-form .form-container {
+#weather-form-area .form-container {
   padding: 20px 30px;
 }
 
