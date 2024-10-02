@@ -1,10 +1,72 @@
+@font-face {
+  font-family: 'roboto';
+  src: url('../fonts/roboto/Roboto-Regular.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 #weather-display {
   display: none;
-  width: 700px;
+  text-align: center;
+}
+
+#current-weather-box {
+  width: 800px;
   padding: 20px;
   margin-top: 16px;
+  margin-bottom: 20px;
   border: 1px solid lightgrey;
   box-shadow: 0px 3px 0px #d3d3d3;
   background-color: white;
-  text-align: center;
+  color: #878787;
+  font-family: "roboto", sans-serif;
+}
+
+#current-weather-box .formatted-address {
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+#current-weather-box .weather-and-temperature {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+#current-weather-box .weather-and-temperature .weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#current-weather-box .weather-and-temperature img {
+  width: 160px;
+  height: 160px;
+  margin-left: 10px;
+}
+
+#current-weather-box .weather-and-temperature .temperature {
+  font-size: 100px;
+  font-weight: lighter;
+}
+
+#current-weather-box .weather-fields {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  height: 150px;
+}
+
+#current-weather-box .weather-fields .weather-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#current-weather-box .weather-fields .weather-field img {
+  width: 40px;
+  height: 40px;
 }
