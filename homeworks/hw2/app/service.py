@@ -26,19 +26,25 @@ def get_weather(latitude, longitude, args=None):
 		params={
 			"location": f"{latitude},{longitude}",
 			"apikey": os.getenv("TOMORROW_API_KEY"),
+			"fields": ["temperature", "temperatureApparent", "temperatureMin", "temperatureMax", "windSpeed",
+					   "windDirection", "humidity", "pressureSeaLevel", "uvIndex", "weatherCode",
+					   "precipitationProbability", "precipitationType", "sunriseTime", "sunsetTime", "visibility",
+					   "moonPhase", "cloudCover"],
 			"units": "imperial",
 			"timesteps": ["current", "1h", "1d"],
 			"timezone": "America/Los_Angeles",
+			**(args if args else {}),
 		},
 	)
 
-	if response.status_code != 200:
+	data = response.json().get("data")
+	if response.status_code != 200 or data is None:
 		return (
 			json.dumps({"success": False, "error": "Failed to fetch weather data"}),
 			500,
 		)
 
-	return json.dumps({"success": True, "data": response.json()})
+	return json.dumps({"success": True, "data": data})
 
 
 def get_geocode_info(address):
@@ -68,5 +74,14 @@ def get_geocode_info(address):
 
 
 if __name__ == "__main__":
-	print(get_weather(34.0522, -118.2437))
-	print(get_geocode_info("University of Southern California"))
+	weather_data = get_weather(34.0522, -118.2437)
+	geocode_info = get_geocode_info("University of Southern California")
+
+	with open("test.json", "w") as f:
+		json.dump({
+			"weather_data": json.loads(weather_data),
+			"geocode_info": json.loads(geocode_info)
+		}, f, indent=4)
+
+	print(json.dumps(json.loads(weather_data), indent=4))
+	print(json.dumps(json.loads(geocode_info), indent=4))
