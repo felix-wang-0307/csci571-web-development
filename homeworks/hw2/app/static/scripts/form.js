@@ -8,29 +8,21 @@ function getFormItems() {
   return { street, city, state, autoDetect };
 }
 
-export function submitForm(event) {
+export async function submitForm(event) {
   event.preventDefault(); // Prevent the default form submission behavior
-  console.log("Form submitted");
-
   const { street, city, state, autoDetect } = getFormItems();
 
-  console.log('Street:', street);
-  console.log('City:', city);
-  console.log('State:', state);
-  console.log('Auto-detect:', autoDetect);
-
   const weatherDisplay = document.getElementById("weather-display");
-  weatherDisplay.style.display = "block";
+  weatherDisplay.style.display = "block";  // Show the weather display
 
-  fetchData(street, city, state, autoDetect)
-    .then(({ locationString, weather }) => {
-      console.log('Location:', locationString);
-      console.log('Weather:', weather);
-    })
-    .catch(error => {
-      console.error(error);
-      weatherDisplay.innerHTML = "No records have been found.";
-    });
+  try {
+    const { locationString, weather } = await fetchData(street, city, state, autoDetect);
+    console.log('Location:', locationString);
+    console.log('Weather:', weather);
+  } catch (error) {
+    console.error(error);
+    weatherDisplay.innerHTML = "No records have been found.";
+  }
 }
 
 export function clearForm() {
