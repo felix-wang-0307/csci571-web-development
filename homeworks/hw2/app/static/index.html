@@ -10,7 +10,7 @@
   <title>Weather Search</title>
 </head>
 <body>
-<div>
+<div id="root">
   <article id="weather-form-area">
     <header class="banner">
       <h1>Weather Search</h1>
@@ -74,22 +74,23 @@
     <section id="current-weather-box">
       <h2 class="formatted-address">Address Placeholder</h2>
       <div class="weather-and-temperature">
-        <div class="weather-icon">
+        <div class="weather">
           <img
             id="weather-icon"
             src="/images/weather_symbols/clear_day.svg"
             alt="Weather icon"
           />
+          <span id="weather-desc">Clear</span>
         </div>
         <div class="temperature">
-          <span id="temperature">0</span>
+          <span id="temperature">97.2</span>
           <span>&deg;</span>
         </div>
       </div>
       <div class="weather-fields">
         <div class="weather-field">
           <span class="field-label">Humidity</span>
-          <img src="/images/humidity.png" alt="humidity">
+          <img src="/images/Humidity.png" alt="humidity">
           <span id="humidity">Humidity Placeholder</span>
         </div>
         <div class="weather-field">
@@ -107,7 +108,7 @@
           <img src="/images/Visibility.png" alt="visibility">
           <span id="visibility">Visibility Placeholder</span>
         </div>
-        <div>
+        <div class="weather-field">
           <span class="field-label">Cloud Cover</span>
           <img src="/images/Cloud_Cover.png" alt="Cloud Cover">
           <span id="cloud-cover">Cloud Cover Placeholder</span>
@@ -120,6 +121,12 @@
       </div>
     </section>
   </article>
+
+  <script>
+    // debug mode: show the weather display area
+    {#const weatherDisplay = document.getElementById("weather-display");#}
+    {#weatherDisplay.style.display = "block";#}
+  </script>
 </div>
 </body>
 </html>

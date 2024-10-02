@@ -13,8 +13,7 @@ export async function submitForm(event) {
   event.preventDefault(); // Prevent the default form submission behavior
   const { street, city, state, autoDetect } = getFormItems();
 
-  const weatherDisplay = document.getElementById("weather-display");
-  weatherDisplay.style.display = "block";  // Show the weather display
+  const weatherDisplayDiv = document.getElementById("weather-display");
 
   try {
     const { locationString, weather } = await fetchData(street, city, state, autoDetect);
@@ -24,14 +23,18 @@ export async function submitForm(event) {
         ?.values;
 
     console.log(currentWeather);
-    renderCurrentWeather(currentWeather);
+    renderCurrentWeather(locationString, currentWeather);
   } catch (error) {
     console.error(error);
-    weatherDisplay.innerHTML = "No records have been found.";
+    const currentWeatherDiv = document.getElementById("current-weather");
+    currentWeatherDiv.innerHTML = "No records have been found.";
+  } finally {
+    weatherDisplayDiv.style.display = "block";  // Show the weather display anyway
   }
 }
 
-export function clearForm() {
+export function clearForm(event) {
+  event.preventDefault();  // Prevent the default form submission behavior
   document.getElementById('street').value = '';
   document.getElementById('city').value = '';
   document.getElementById('state').value = '';
