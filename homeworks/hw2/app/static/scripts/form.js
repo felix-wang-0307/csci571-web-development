@@ -1,4 +1,5 @@
 import { fetchData } from "./fetchData.js";
+import { renderCurrentWeather } from "./renderResult.js";
 
 function getFormItems() {
   const street = document.getElementById('street').value;
@@ -17,8 +18,13 @@ export async function submitForm(event) {
 
   try {
     const { locationString, weather } = await fetchData(street, city, state, autoDetect);
-    console.log('Location:', locationString);
-    console.log('Weather:', weather);
+    const currentWeather = weather.timelines
+        ?.find(timeline => timeline.timestep === "current")
+        ?.intervals[0]
+        ?.values;
+
+    console.log(currentWeather);
+    renderCurrentWeather(currentWeather);
   } catch (error) {
     console.error(error);
     weatherDisplay.innerHTML = "No records have been found.";
@@ -30,6 +36,7 @@ export function clearForm() {
   document.getElementById('city').value = '';
   document.getElementById('state').value = '';
   document.getElementById('auto-detect').checked = false;
+  document.getElementById("weather-display").style.display = "none";  // Hide the weather display
   toggleAutoDetect();
 }
 

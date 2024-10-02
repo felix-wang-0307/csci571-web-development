@@ -38,5 +38,5 @@ async function fetchWeather(latitude, longitude) {
   if (!data.success) {
     throw new Error('Failed to fetch weather data');
   }
-  return data;
+  return data.data;
 }
