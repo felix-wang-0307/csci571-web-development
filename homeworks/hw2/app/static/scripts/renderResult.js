@@ -13,3 +13,9 @@ export async function renderCurrentWeather(locationString, weather) {
   document.getElementById("cloud-cover").textContent = weather.cloudCover + "%";
   document.getElementById("uv-level").textContent = weather.uvIndex;
 }
+
+export async function renderDailyWeather(dailyWeathers) {
+  dailyWeathers.forEach((dailyWeather, index) => {
+
+  })
+}

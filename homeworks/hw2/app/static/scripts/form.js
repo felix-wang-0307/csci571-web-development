@@ -1,5 +1,5 @@
 import { fetchData } from "./fetchData.js";
-import { renderCurrentWeather } from "./renderResult.js";
+import { renderCurrentWeather, renderDailyWeather } from "./renderResult.js";
 
 function getFormItems() {
   const street = document.getElementById('street').value;
@@ -12,24 +12,24 @@ function getFormItems() {
 export async function submitForm(event) {
   event.preventDefault(); // Prevent the default form submission behavior
   const { street, city, state, autoDetect } = getFormItems();
-
   const weatherDisplayDiv = document.getElementById("weather-display");
-
   try {
-    const { locationString, weather } = await fetchData(street, city, state, autoDetect);
+    const { locationString = "", weather = {} } = await fetchData(street, city, state, autoDetect);
     const currentWeather = weather.timelines
         ?.find(timeline => timeline.timestep === "current")
         ?.intervals[0]
         ?.values;
-
-    console.log(currentWeather);
-    renderCurrentWeather(locationString, currentWeather);
+    await renderCurrentWeather(locationString, currentWeather);
+    const dailyWeather = weather.timelines
+        ?.find(timeline => timeline.timestep === "1d")
+        ?.intervals;
+    await renderDailyWeather(dailyWeather);
   } catch (error) {
     console.error(error);
     const currentWeatherDiv = document.getElementById("current-weather");
     currentWeatherDiv.innerHTML = "No records have been found.";
   } finally {
-    weatherDisplayDiv.style.display = "block";  // Show the weather display anyway
+    weatherDisplayDiv.style.display = "flex";  // Show the weather display anyway
   }
 }
 
