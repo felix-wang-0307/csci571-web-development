@@ -9,7 +9,7 @@ WEATHER_API = "https://api.tomorrow.io/v4/timelines"
 GOOGLE_MAPS_API = "https://maps.googleapis.com/maps/api/geocode/json"
 
 
-def get_weather(latitude, longitude, args=None):
+def get_weather(latitude, longitude):
 	"""
 	Get weather data from Tomorrow.io API.
 	API Docs: https://docs.tomorrow.io/reference/get-timelines
@@ -33,7 +33,6 @@ def get_weather(latitude, longitude, args=None):
 			"units": "imperial",
 			"timesteps": ["current", "1h", "1d"],
 			"timezone": "America/Los_Angeles",
-			**(args if args else {}),
 		},
 	)
 
