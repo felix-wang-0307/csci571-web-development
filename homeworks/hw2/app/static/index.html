@@ -16,7 +16,7 @@
       <h1>Weather Search</h1>
       <p>Fill out the form to get weather info!</p>
     </header>
-    <form id="weather-form" class="form-container" onreset="clearForm()">
+    <form id="weather-form" class="form-container">
       <div class="form-group street-item">
         <label for="street">Street</label>
         <input type="text" id="street" name="street" required/>
@@ -71,7 +71,54 @@
   </article>
 
   <article id="weather-display">
-
+    <section id="current-weather-box">
+      <h2 class="formatted-address">Address Placeholder</h2>
+      <div class="weather-and-temperature">
+        <div class="weather-icon">
+          <img
+            id="weather-icon"
+            src="/images/weather_symbols/clear_day.svg"
+            alt="Weather icon"
+          />
+        </div>
+        <div class="temperature">
+          <span id="temperature">0</span>
+          <span>&deg;</span>
+        </div>
+      </div>
+      <div class="weather-fields">
+        <div class="weather-field">
+          <span class="field-label">Humidity</span>
+          <img src="/images/humidity.png" alt="humidity">
+          <span id="humidity">Humidity Placeholder</span>
+        </div>
+        <div class="weather-field">
+          <span class="field-label">Pressure</span>
+          <img src="/images/Pressure.png" alt="pressure">
+          <span id="pressure">Pressure Placeholder</span>
+        </div>
+        <div class="weather-field">
+          <span class="field-label">Wind Speed</span>
+          <img src="/images/Wind_Speed.png" alt="wind speed">
+          <span id="wind-speed">Wind Speed Placeholder</span>
+        </div>
+        <div class="weather-field">
+          <span class="field-label">Visibility</span>
+          <img src="/images/Visibility.png" alt="visibility">
+          <span id="visibility">Visibility Placeholder</span>
+        </div>
+        <div>
+          <span class="field-label">Cloud Cover</span>
+          <img src="/images/Cloud_Cover.png" alt="Cloud Cover">
+          <span id="cloud-cover">Cloud Cover Placeholder</span>
+        </div>
+        <div class="weather-field">
+          <span class="field-label">UV Level</span>
+          <img src="/images/UV_Level.png" alt="uv level">
+          <span id="uv-level">UV Level Placeholder</span>
+        </div>
+      </div>
+    </section>
   </article>
 </div>
 </body>
