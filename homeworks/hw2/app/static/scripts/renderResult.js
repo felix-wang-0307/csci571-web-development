@@ -14,8 +14,47 @@ export async function renderCurrentWeather(locationString, weather) {
   document.getElementById("uv-level").textContent = weather.uvIndex;
 }
 
-export async function renderDailyWeather(dailyWeathers) {
-  dailyWeathers.forEach((dailyWeather, index) => {
+function createDivElement(className, textContent) {
+  const element = document.createElement("div");
+  element.className = className;
+  element.textContent = textContent;
+  return element;
+}
 
-  })
+function convertDate(ISODate) {
+  const date = new Date(ISODate);
+  // Transfer the ISODate to "Wednesday, 1 Jan 2020" format
+  return date.toLocaleDateString("en-US", {weekday: "long", day: "numeric", month: "short", year: "numeric"});
+}
+
+export async function renderDailyWeather(dailyWeathers) {
+  const dailyWeathersDiv = document.getElementById("daily-weathers");
+  const weatherCodeMapping =
+      await fetch("/scripts/weatherCodes.json").then(response => response.json());
+
+  function createWeatherStatusColumn(dailyWeather, weatherCodeMapping) {
+    const weatherDescDiv = createDivElement("weather-item weather-status", "");
+    const { desc, icon } = weatherCodeMapping[dailyWeather.values.weatherCode];
+    const weatherIcon = document.createElement("img");
+    weatherIcon.src = icon;
+    weatherIcon.alt = desc;
+    weatherDescDiv.appendChild(weatherIcon);
+    weatherDescDiv.appendChild(createDivElement("weather-desc", desc));
+    return weatherDescDiv;
+  }
+
+  function createWeatherRow(dailyWeather) {
+    const weatherRowDiv = createDivElement("weather-row", "");
+    weatherRowDiv.appendChild(createDivElement("weather-item", convertDate(dailyWeather.startTime)));
+    weatherRowDiv.appendChild(createWeatherStatusColumn(dailyWeather, weatherCodeMapping));
+    weatherRowDiv.appendChild(createDivElement("weather-item", dailyWeather.values.temperatureMax));
+    weatherRowDiv.appendChild(createDivElement("weather-item", dailyWeather.values.temperatureMin));
+    weatherRowDiv.appendChild(createDivElement("weather-item", dailyWeather.values.windSpeed));
+    return weatherRowDiv;
+  }
+
+  for (const dailyWeather of dailyWeathers) {
+    const weatherRowDiv = createWeatherRow(dailyWeather);
+    dailyWeathersDiv.appendChild(weatherRowDiv);
+  }
 }

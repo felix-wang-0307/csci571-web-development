@@ -98,10 +98,6 @@
   margin-top: 10px;
 }
 
-.weather-row:nth-child(odd) {
-  background-color: #f9f9f9;
-}
-
 .weather-item {
   text-align: center;
 }
@@ -114,6 +110,14 @@
   flex: 1;
 }
 
-.status-icon img {
+.weather-status {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+.weather-status img {
   width: 40px;
 }
