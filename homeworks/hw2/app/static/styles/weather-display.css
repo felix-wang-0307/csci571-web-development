@@ -1,12 +1,4 @@
-@font-face {
-  font-family: 'roboto';
-  src: url('../fonts/roboto/Roboto-Regular.ttf') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
 #weather-display {
-  display: none;
   flex-direction: column;
   align-items: center;
 }
@@ -83,6 +75,7 @@
   align-items: center;
   padding: 10px;
   border: 1px solid #ccc;
+  cursor: pointer;
 }
 
 .weather-header {

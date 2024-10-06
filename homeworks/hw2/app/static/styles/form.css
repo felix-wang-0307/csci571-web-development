@@ -4,6 +4,13 @@
   border: 1px solid lightgrey;
   box-shadow: 0px 3px 0px #d3d3d3;
   background-color: white;
+  font-family: "Open Sans", sans-serif;
+}
+
+#weather-form-area input, #weather-form-area select {
+  padding: 8px;
+  font-family: "Open Sans", sans-serif;
+  border: 1px solid lightgrey;
 }
 
 #weather-form-area .banner {
@@ -11,24 +18,24 @@
   background-size: cover;
   background-position: top;
   padding-top: 20px;
-  padding-left: 30px;
+  padding-left: 40px;
   padding-bottom: 16px;
 }
 
 #weather-form-area .banner h1 {
-  color: black;
+  color: #535353;
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 14px;
 }
 
 #weather-form-area .banner p {
-  color: black;
+  color: #535353;
   font-size: 16px;
 }
 
 #weather-form-area .form-container {
-  padding: 20px 30px;
+  padding: 20px 40px;
 }
 
 .form-group {
@@ -39,7 +46,7 @@
   display: inline-flex; 
   font-size: 16px;
   color: #7887c3;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 8px;
   align-items: center; 
 }
@@ -77,7 +84,7 @@
 .auto-detect-area { 
   color: #7887c3;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .form-buttons {
@@ -88,16 +95,16 @@
 .form-button {
   padding: 10px 20px;
   font-size: 16px;
-  font-weight: lighter;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
   border: none;
   color: white;
   cursor: pointer;
 }
 
 .submit-button {
-  background-color: #4169e1; 
-  box-shadow: 0px 5px 0px #384a75; 
-  
+  background-color: #566ea8;
+  box-shadow: 0px 5px 0px #3c4c75;
 }
 
 .clear-button {
