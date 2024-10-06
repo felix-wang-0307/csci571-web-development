@@ -1,3 +1,10 @@
+import { convertDate, createDivElement } from "./utils.js";
+import { renderDailyDetails } from "./renderDailyDetails.js";
+
+function hideWeatherDisplay() {
+  document.getElementById("weather-display").style.display = "none";
+}
+
 export async function renderCurrentWeather(locationString, weather) {
   const weatherCodeMapping =
       await fetch("/scripts/weatherCodes.json").then(response => response.json());
@@ -14,21 +21,8 @@ export async function renderCurrentWeather(locationString, weather) {
   document.getElementById("uv-level").textContent = weather.uvIndex;
 }
 
-function createDivElement(className, textContent) {
-  const element = document.createElement("div");
-  element.className = className;
-  element.textContent = textContent;
-  return element;
-}
-
-function convertDate(ISODate) {
-  const date = new Date(ISODate);
-  // Transfer the ISODate to "Wednesday, 1 Jan 2020" format
-  return date.toLocaleDateString("en-US", {weekday: "long", day: "numeric", month: "short", year: "numeric"});
-}
-
 export async function renderDailyWeather(dailyWeathers) {
-  const dailyWeathersDiv = document.getElementById("daily-weathers");
+  const weeklyWeatherDiv = document.getElementById("weekly-weather");
   const weatherCodeMapping =
       await fetch("/scripts/weatherCodes.json").then(response => response.json());
 
@@ -55,6 +49,10 @@ export async function renderDailyWeather(dailyWeathers) {
 
   for (const dailyWeather of dailyWeathers) {
     const weatherRowDiv = createWeatherRow(dailyWeather);
-    dailyWeathersDiv.appendChild(weatherRowDiv);
+    weatherRowDiv.onclick = () => {
+      hideWeatherDisplay();
+      renderDailyDetails(dailyWeather);
+    }
+    weeklyWeatherDiv.appendChild(weatherRowDiv);
   }
 }
