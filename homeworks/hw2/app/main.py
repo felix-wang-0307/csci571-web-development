@@ -1,6 +1,7 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, redirect
 import json
 import service
+import os
 
 app = Flask(__name__)
 WEATHER_API = "https://api.tomorrow.io/v4/weather/forecast"
@@ -17,7 +18,10 @@ def root():
 
 @app.route("/<path:path>")
 def static_files(path):
-    return send_from_directory("static", path)
+    if os.path.exists("static/" + path):
+        return send_from_directory("static", path)
+    else:
+        return redirect("/")
 
 
 @app.route("/query", methods=["GET"])
