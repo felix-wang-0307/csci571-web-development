@@ -1,0 +1,104 @@
+/* General styling for the weather box */
+#daily-weather .daily-weather-box {
+  width: 400px;
+  margin: 0 auto;
+  background: linear-gradient(to top, #3d4d76, #fdfdfe); /* Gradient matching the image */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Styling for the title */
+#daily-weather-details h1 {
+  text-align: center;
+  font-size: 22px;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Box for the top section, which includes the date, description, and temperature */
+.daily-weather-box .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Text on the left side of the top box */
+.daily-weather-box .words {
+  font-size: 18px;
+  color: #3c4c75;
+}
+
+/* Date and description styling */
+#daily-weather-date {
+  font-size: 18px;
+}
+
+#daily-weather-desc {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+/* Temperature styling */
+#daily-weather-temperature {
+  font-size: 22px;
+  margin-top: 10px;
+}
+
+/* Weather icon on the right */
+.daily-weather-box .icon img {
+  width: 100px;
+  height: 100px;
+}
+
+/* Styling for the weather fields */
+.daily-weather-fields {
+  margin-top: 20px;
+  text-align: center; /* Centering fields */
+}
+
+.daily-weather-field {
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+  font-size: 16px;
+}
+
+.daily-weather-field  .field-label {
+  font-weight: bold;
+}
+
+.daily-weather-field  .field-label:after {
+  content: ":";
+}
+
+.daily-weather-field span {
+  font-size: 14px;
+  color: white;
+}
+
+/* Add some responsiveness */
+@media (max-width: 500px) {
+  #daily-weather {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .daily-weather-box .icon img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .daily-weather-box .words {
+    font-size: 16px;
+  }
+
+  #daily-weather-temperature {
+    font-size: 20px;
+  }
+
+  .daily-weather-field {
+    font-size: 14px;
+  }
+}
