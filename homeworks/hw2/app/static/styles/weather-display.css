@@ -17,7 +17,8 @@
 
 #current-weather-box .formatted-address {
   text-align: left;
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: 400;
   margin-bottom: 16px;
 }
 
@@ -32,6 +33,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
 }
 
 #current-weather-box .weather-and-temperature img {
@@ -41,15 +44,16 @@
 }
 
 #current-weather-box .weather-and-temperature .temperature {
-  font-size: 100px;
-  font-weight: lighter;
+  font-size: 130px;
+  font-weight: 300;
 }
 
 #current-weather-box .weather-fields {
+  font-weight: 400;
   display: flex;
   justify-content: space-between;
-  margin-top: 16px;
-  height: 150px;
+  margin: 16px 10px;
+  height: 120px;
 }
 
 #current-weather-box .weather-fields .weather-field {
