@@ -1,5 +1,6 @@
 import { fetchData } from "./fetchData.js";
-import { renderCurrentWeather, renderDailyWeather } from "./renderResult.js";
+import { renderCurrentWeather, renderWeeklyWeather } from "./renderWeeklyWeather.js";
+import { renderCharts } from "./renderCharts.js";
 
 function getFormItems() {
   const street = document.getElementById('street').value;
@@ -14,16 +15,24 @@ export async function submitForm(event) {
   const { street, city, state, autoDetect } = getFormItems();
   const weatherDisplayDiv = document.getElementById("weather-display");
   try {
-    const { locationString = "", weather = {} } = await fetchData(street, city, state, autoDetect);
+    const { locationString = "", weather = {} } =
+        await fetchData(street, city, state, autoDetect);
     const currentWeather = weather.timelines
         ?.find(timeline => timeline.timestep === "current")
         ?.intervals[0]
         ?.values;
     await renderCurrentWeather(locationString, currentWeather);
-    const dailyWeather = weather.timelines
+    const weeklyWeather = weather.timelines
         ?.find(timeline => timeline.timestep === "1d")
         ?.intervals;
-    await renderDailyWeather(dailyWeather);
+    await renderWeeklyWeather(weeklyWeather);
+    const hourlyWeather = weather.timelines
+        ?.find(timeline => timeline.timestep === "1h")
+        ?.intervals;
+    document.addEventListener("dailyWeatherSelected", () => {
+      console.log("Daily weather selected");
+      renderCharts(weeklyWeather, hourlyWeather);
+    });
   } catch (error) {
     console.error(error);
     const currentWeatherDiv = document.getElementById("current-weather");
@@ -40,6 +49,7 @@ export function clearForm(event) {
   document.getElementById('state').value = '';
   document.getElementById('auto-detect').checked = false;
   document.getElementById("weather-display").style.display = "none";  // Hide the weather display
+  document.getElementById("daily-weather").style.display = "none";
   toggleAutoDetect();
 }
 
@@ -53,4 +63,3 @@ export function toggleAutoDetect() {
   city.disabled = isAutoDetect;
   state.disabled = isAutoDetect;
 }
-

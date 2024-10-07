@@ -10,12 +10,18 @@
   <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet">
+  <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet">
 
   <link rel="stylesheet" href="styles/global.css"/>
   <link rel="stylesheet" href="styles/form.css"/>
   <link rel="stylesheet" href="styles/weather-display.css"/>
   <link rel="stylesheet" href="styles/daily-weather.css"/>
   <script type="module" src="scripts/index.js" defer></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <script src="https://code.highcharts.com/modules/windbarb.js"></script>
   <title>Weather Search</title>
 </head>
 <body>
@@ -100,32 +106,32 @@
         <div class="weather-field">
           <span class="field-label">Humidity</span>
           <img src="/images/Humidity.png" alt="humidity">
-          <span id="humidity">Humidity Placeholder</span>
+          <span id="humidity">N/A</span>
         </div>
         <div class="weather-field">
           <span class="field-label">Pressure</span>
           <img src="/images/Pressure.png" alt="pressure">
-          <span id="pressure">Pressure Placeholder</span>
+          <span id="pressure">N/A</span>
         </div>
         <div class="weather-field">
           <span class="field-label">Wind Speed</span>
           <img src="/images/Wind_Speed.png" alt="wind speed">
-          <span id="wind-speed">Wind Speed Placeholder</span>
+          <span id="wind-speed">N/A</span>
         </div>
         <div class="weather-field">
           <span class="field-label">Visibility</span>
           <img src="/images/Visibility.png" alt="visibility">
-          <span id="visibility">Visibility Placeholder</span>
+          <span id="visibility">N/A</span>
         </div>
         <div class="weather-field">
           <span class="field-label">Cloud Cover</span>
           <img src="/images/Cloud_Cover.png" alt="Cloud Cover">
-          <span id="cloud-cover">Cloud Cover Placeholder</span>
+          <span id="cloud-cover">N/A</span>
         </div>
         <div class="weather-field">
           <span class="field-label">UV Level</span>
           <img src="/images/UV_Level.png" alt="uv level">
-          <span id="uv-level">UV Level Placeholder</span>
+          <span id="uv-level">N/A</span>
         </div>
       </div>
     </section>
@@ -139,13 +145,15 @@
         <div class="weather-item">Temp Low</div>
         <div class="weather-item">Wind Speed</div>
       </div>
-      <!-- Data rows are created by renderResult.js -->
+      <!-- Data rows are created by renderWeeklyWeather.js -->
     </section>
   </article>
 
   <article id="daily-weather" style="display: none">
     <section id="daily-weather-details">
-      <h1>Daily Weather Details</h1>
+      <div class="header">
+        <h1 class="title">Daily Weather Details</h1>
+      </div>
       <div class="daily-weather-box">
         <div class="top">
           <div class="words">
@@ -164,41 +172,53 @@
         <div class="daily-weather-fields">
           <div class="daily-weather-field">
             <span class="field-label">Precipitation</span>
-            <span id="daily-precipitation">Precipitation Placeholder</span>
+            <span class="field-value" id="daily-precipitation">N/A</span>
           </div>
           <div class="daily-weather-field">
             <span class="field-label">Chance of Rain</span>
-            <span id="daily-chance-of-rain">Chance of Rain Placeholder</span>
+            <span class="field-value" id="daily-chance-of-rain">N/A</span>
           </div>
           <div class="daily-weather-field">
             <span class="field-label">Wind Speed</span>
-            <span id="daily-wind-speed">Wind Speed Placeholder</span>
+            <span class="field-value" id="daily-wind-speed">N/A</span>
           </div>
           <div class="daily-weather-field">
             <span class="field-label">Humidity</span>
-            <span id="daily-humidity">Humidity Placeholder</span>
+            <span class="field-value" id="daily-humidity">N/A</span>
           </div>
           <div class="daily-weather-field">
             <span class="field-label">Visibility</span>
-            <span id="daily-visibility">Visibility Placeholder</span>
+            <span class="field-value" id="daily-visibility">N/A</span>
           </div>
           <div class="daily-weather-field">
             <span class="field-label">Sunrise/Sunset</span>
-            <span id="daily-sunrise-and-sunset">Sunrise/Sunset Placeholder</span>
+            <span class="field-value" id="daily-sunrise-and-sunset">N/A</span>
           </div>
         </div>
       </div>
     </section>
 
     <section id="weather-charts">
-      <h1>Weather Charts</h1>
+      <div class="header">
+        <h1 class="title">Weather Charts</h1>
+      </div>
+      <div class="point-down">
+        <img src="/images/point-down-512.png" alt="point down"/>
+      </div>
+      <div class="point-up" style="display: none">
+        <img src="/images/point-up-512.png" alt="point up"/>
+      </div>
+      <div class="charts" style="display: none">
+        <div class="chart" id="temperature-ranges"></div>
+        <div class="chart" id="hourly-weather"></div>
+      </div>
     </section>
   </article>
 
   <script>
     // debug mode: show the weather display area
-    // const weatherDisplay = document.getElementById("weather-display");
-    // weatherDisplay.style.display = "block";
+    const weatherDisplay = document.getElementById("daily-weather");
+    weatherDisplay.style.display = "block";
   </script>
 </div>
 </body>
