@@ -20,6 +20,10 @@ def root():
 def static_files(path):
     if os.path.exists("static/" + path):
         return send_from_directory("static", path)
+    elif os.path.exists("static/" + path + ".html"):
+        return send_from_directory("static", path + ".html")
+    elif os.path.exists("static/" + path + ".js"):
+        return send_from_directory("static", path + ".js")
     else:
         return redirect("/")
 
