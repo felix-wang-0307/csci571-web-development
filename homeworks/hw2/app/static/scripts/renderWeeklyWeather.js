@@ -21,8 +21,12 @@ export async function renderCurrentWeather(locationString, weather) {
   document.getElementById("uv-level").textContent = weather.uvIndex;
 }
 
-export async function renderDailyWeather(dailyWeathers) {
+export async function renderWeeklyWeather(weeklyWeather) {
   const weeklyWeatherDiv = document.getElementById("weekly-weather");
+  if (weeklyWeatherDiv.childElementCount > 1) {
+    // only reserve the first child (table header)
+    weeklyWeatherDiv.innerHTML = weeklyWeatherDiv.firstElementChild.outerHTML;
+  }
   const weatherCodeMapping =
       await fetch("/scripts/weatherCodes.json").then(response => response.json());
 
@@ -47,11 +51,13 @@ export async function renderDailyWeather(dailyWeathers) {
     return weatherRowDiv;
   }
 
-  for (const dailyWeather of dailyWeathers) {
+  for (const dailyWeather of weeklyWeather) {
     const weatherRowDiv = createWeatherRow(dailyWeather);
     weatherRowDiv.onclick = () => {
       hideWeatherDisplay();
       renderDailyDetails(dailyWeather);
+      const event = new CustomEvent("dailyWeatherSelected");
+      document.dispatchEvent(event);
     }
     weeklyWeatherDiv.appendChild(weatherRowDiv);
   }
