@@ -2,6 +2,7 @@ __pycache__/
 *.py[cod]
 hw2_venv/
 *.log
+.idea/
 .DS_Store
 .env
 *.env
