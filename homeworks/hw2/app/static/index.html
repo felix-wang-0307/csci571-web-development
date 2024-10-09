@@ -1,225 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-        rel="stylesheet">
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet">
-  <link
+      rel="stylesheet"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-      rel="stylesheet">
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="styles/global.css"/>
-  <link rel="stylesheet" href="styles/form.css"/>
-  <link rel="stylesheet" href="styles/weather-display.css"/>
-  <link rel="stylesheet" href="styles/daily-weather.css"/>
-  <script type="module" src="scripts/index.js" defer></script>
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/highcharts-more.js"></script>
-  <script src="https://code.highcharts.com/modules/windbarb.js"></script>
-  <title>Weather Search</title>
-</head>
-<body>
-<div id="root">
-  <article id="weather-form-area">
-    <header class="banner">
-      <h1>Weather Search</h1>
-      <p>Fill out the form to get weather info!</p>
-    </header>
-    <form id="weather-form" class="form-container">
-      <div class="form-group street-item">
-        <label for="street">Street</label>
-        <input type="text" id="street" name="street" required/>
-      </div>
-      <div class="city-and-state">
-        <div class="form-group">
-          <label for="city">City</label>
-          <input type="text" id="city" name="city" required/>
-        </div>
-        <div class="form-group">
-          <label for="state">State<span class="star"></span></label>
-          <select id="state" name="state" required>
-            <script>
-              // Fetch states from JSON file and populate select element
-              const select = document.getElementById("state");
-              fetch("states.json")
-                  .then((response) => response.json())
-                  .then((states) => {
-                    for (const [name, abbreviation] of Object.entries(states)) {
-                      const option = document.createElement("option");
-                      option.value = abbreviation;
-                      option.textContent = name;
-                      select.appendChild(option);
-                    }
-                  })
-                  .catch((error) =>
-                      console.error("Error fetching states:", error)
-                  );
-              const defaultOption = document.createElement("option");
-              defaultOption.value = "";
-              defaultOption.textContent = "Select your state";
-              defaultOption.selected = true;
-              select.appendChild(defaultOption);
-            </script>
-          </select>
-        </div>
-      </div>
-      <div class="line"></div>
-      <div class="form-group auto-detect-area">
-        <span>Want us to auto-detect your location? Check here</span>
-        <input type="checkbox" id="auto-detect" name="auto-detect"/>
-      </div>
-      <div class="form-group form-buttons">
-        <button type="submit" class="form-button submit-button">
-          SUBMIT
-        </button>
-        <button type="reset" class="form-button clear-button">
-          CLEAR
-        </button>
-      </div>
-    </form>
-  </article>
-
-  <article id="weather-display" style="display: none">
-    <section id="current-weather-box">
-      <h2 class="formatted-address">Address Placeholder</h2>
-      <div class="weather-and-temperature">
-        <div class="weather">
-          <img
-              id="weather-icon"
-              src="/images/weather_symbols/clear_day.svg"
-              alt="Weather icon"
-          />
-          <span id="weather-desc">Clear</span>
-        </div>
-        <div class="temperature">
-          <span id="temperature">97.2</span>
-          <span>&deg;</span>
-        </div>
-      </div>
-      <div class="weather-fields">
-        <div class="weather-field">
-          <span class="field-label">Humidity</span>
-          <img src="/images/Humidity.png" alt="humidity">
-          <span id="humidity">N/A</span>
-        </div>
-        <div class="weather-field">
-          <span class="field-label">Pressure</span>
-          <img src="/images/Pressure.png" alt="pressure">
-          <span id="pressure">N/A</span>
-        </div>
-        <div class="weather-field">
-          <span class="field-label">Wind Speed</span>
-          <img src="/images/Wind_Speed.png" alt="wind speed">
-          <span id="wind-speed">N/A</span>
-        </div>
-        <div class="weather-field">
-          <span class="field-label">Visibility</span>
-          <img src="/images/Visibility.png" alt="visibility">
-          <span id="visibility">N/A</span>
-        </div>
-        <div class="weather-field">
-          <span class="field-label">Cloud Cover</span>
-          <img src="/images/Cloud_Cover.png" alt="Cloud Cover">
-          <span id="cloud-cover">N/A</span>
-        </div>
-        <div class="weather-field">
-          <span class="field-label">UV Level</span>
-          <img src="/images/UV_Level.png" alt="uv level">
-          <span id="uv-level">N/A</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="weekly-weather" class="weather-table">
-      <!-- Header Row -->
-      <div class="weather-header">
-        <div class="weather-item">Date</div>
-        <div class="weather-item">Status</div>
-        <div class="weather-item">Temp High</div>
-        <div class="weather-item">Temp Low</div>
-        <div class="weather-item">Wind Speed</div>
-      </div>
-      <!-- Data rows are created by renderWeeklyWeather.js -->
-    </section>
-  </article>
-
-  <article id="daily-weather" style="display: none">
-    <section id="daily-weather-details">
-      <div class="header">
-        <h1 class="title">Daily Weather Details</h1>
-      </div>
-      <div class="daily-weather-box">
-        <div class="top">
-          <div class="words">
-            <p id="daily-weather-date">Monday, 09 Sep 2024</p>
-            <p id="daily-weather-desc">Clear</p>
-            <p id="daily-weather-temperature">103.1/69.52</p>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/form.css" />
+    <link rel="stylesheet" href="styles/weather-display.css" />
+    <link rel="stylesheet" href="styles/daily-weather.css" />
+    <script type="module" src="scripts/index.js" defer></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/windbarb.js"></script>
+    <title>Weather Search</title>
+  </head>
+  <body>
+    <div id="root">
+      <article id="weather-form-area">
+        <header class="banner">
+          <h1>Weather Search</h1>
+          <p>Fill out the form to get weather info!</p>
+        </header>
+        <form id="weather-form" class="form-container">
+          <div class="form-group street-item">
+            <label for="street">Street</label>
+            <input type="text" id="street" name="street" required />
           </div>
-          <div class="icon">
-            <img
-                id="daily-weather-icon"
+          <div class="city-and-state">
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" required />
+            </div>
+            <div class="form-group">
+              <label for="state">State<span class="star"></span></label>
+              <select id="state" name="state" required>
+                <script>
+                  // Fetch states from JSON file and populate select element
+                  const select = document.getElementById("state");
+                  fetch("states.json")
+                    .then((response) => response.json())
+                    .then((states) => {
+                      for (const [name, abbreviation] of Object.entries(
+                        states
+                      )) {
+                        const option = document.createElement("option");
+                        option.value = abbreviation;
+                        option.textContent = name;
+                        select.appendChild(option);
+                      }
+                    })
+                    .catch((error) =>
+                      console.error("Error fetching states:", error)
+                    );
+                  const defaultOption = document.createElement("option");
+                  defaultOption.value = "";
+                  defaultOption.textContent = "Select your state";
+                  defaultOption.selected = true;
+                  select.appendChild(defaultOption);
+                </script>
+              </select>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="form-group auto-detect-area">
+            <span>Want us to auto-detect your location? Check here</span>
+            <input type="checkbox" id="auto-detect" name="auto-detect" />
+          </div>
+          <div class="form-group form-buttons">
+            <button type="submit" class="form-button submit-button">
+              SUBMIT
+            </button>
+            <button type="reset" class="form-button clear-button">CLEAR</button>
+          </div>
+        </form>
+      </article>
+
+      <article id="weather-display" style="display: none">
+        <section id="current-weather-box">
+          <h2 class="formatted-address">Address Placeholder</h2>
+          <div class="weather-and-temperature">
+            <div class="weather">
+              <img
+                id="weather-icon"
                 src="/images/weather_symbols/clear_day.svg"
                 alt="Weather icon"
-            />
+              />
+              <span id="weather-desc">Clear</span>
+            </div>
+            <div class="temperature">
+              <span id="temperature">97.2</span>
+              <span>&deg;</span>
+            </div>
           </div>
-        </div>
-        <div class="daily-weather-fields">
-          <div class="daily-weather-field">
-            <span class="field-label">Precipitation</span>
-            <span class="field-value" id="daily-precipitation">N/A</span>
+          <div class="weather-fields">
+            <div class="weather-field">
+              <span class="field-label">Humidity</span>
+              <img src="/images/Humidity.png" alt="humidity" />
+              <span id="humidity">N/A</span>
+            </div>
+            <div class="weather-field">
+              <span class="field-label">Pressure</span>
+              <img src="/images/Pressure.png" alt="pressure" />
+              <span id="pressure">N/A</span>
+            </div>
+            <div class="weather-field">
+              <span class="field-label">Wind Speed</span>
+              <img src="/images/Wind_Speed.png" alt="wind speed" />
+              <span id="wind-speed">N/A</span>
+            </div>
+            <div class="weather-field">
+              <span class="field-label">Visibility</span>
+              <img src="/images/Visibility.png" alt="visibility" />
+              <span id="visibility">N/A</span>
+            </div>
+            <div class="weather-field">
+              <span class="field-label">Cloud Cover</span>
+              <img src="/images/Cloud_Cover.png" alt="Cloud Cover" />
+              <span id="cloud-cover">N/A</span>
+            </div>
+            <div class="weather-field">
+              <span class="field-label">UV Level</span>
+              <img src="/images/UV_Level.png" alt="uv level" />
+              <span id="uv-level">N/A</span>
+            </div>
           </div>
-          <div class="daily-weather-field">
-            <span class="field-label">Chance of Rain</span>
-            <span class="field-value" id="daily-chance-of-rain">N/A</span>
-          </div>
-          <div class="daily-weather-field">
-            <span class="field-label">Wind Speed</span>
-            <span class="field-value" id="daily-wind-speed">N/A</span>
-          </div>
-          <div class="daily-weather-field">
-            <span class="field-label">Humidity</span>
-            <span class="field-value" id="daily-humidity">N/A</span>
-          </div>
-          <div class="daily-weather-field">
-            <span class="field-label">Visibility</span>
-            <span class="field-value" id="daily-visibility">N/A</span>
-          </div>
-          <div class="daily-weather-field">
-            <span class="field-label">Sunrise/Sunset</span>
-            <span class="field-value" id="daily-sunrise-and-sunset">N/A</span>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <section id="weather-charts">
-      <div class="header">
-        <h1 class="title">Weather Charts</h1>
-      </div>
-      <div class="point-down">
-        <img src="/images/point-down-512.png" alt="point down"/>
-      </div>
-      <div class="point-up" style="display: none">
-        <img src="/images/point-up-512.png" alt="point up"/>
-      </div>
-      <div class="charts" style="display: none">
-        <div class="chart" id="temperature-ranges"></div>
-        <div class="chart" id="hourly-weather"></div>
-      </div>
-    </section>
-  </article>
+        <section id="weekly-weather" class="weather-table">
+          <!-- Header Row -->
+          <div class="weather-header">
+            <div class="weather-item">Date</div>
+            <div class="weather-item">Status</div>
+            <div class="weather-item">Temp High</div>
+            <div class="weather-item">Temp Low</div>
+            <div class="weather-item">Wind Speed</div>
+          </div>
+          <!-- Data rows are created by renderWeeklyWeather.js -->
+        </section>
+      </article>
 
-  <script>
-    // debug mode: show the weather display area
-    const weatherDisplay = document.getElementById("daily-weather");
-    weatherDisplay.style.display = "block";
-  </script>
-</div>
-</body>
+      <article id="daily-weather" style="display: none">
+        <section id="daily-weather-details">
+          <div class="header">
+            <h1 class="title">Daily Weather Details</h1>
+          </div>
+          <div class="daily-weather-box">
+            <div class="top">
+              <div class="words">
+                <p id="daily-weather-date">Monday, 09 Sep 2024</p>
+                <p id="daily-weather-desc">Clear</p>
+                <p id="daily-weather-temperature">103.1/69.52</p>
+              </div>
+              <div class="icon">
+                <img
+                  id="daily-weather-icon"
+                  src="/images/weather_symbols/clear_day.svg"
+                  alt="Weather icon"
+                />
+              </div>
+            </div>
+            <div class="daily-weather-fields">
+              <div class="daily-weather-field">
+                <span class="field-label">Precipitation</span>
+                <span class="field-value" id="daily-precipitation">N/A</span>
+              </div>
+              <div class="daily-weather-field">
+                <span class="field-label">Chance of Rain</span>
+                <span class="field-value" id="daily-chance-of-rain">N/A</span>
+              </div>
+              <div class="daily-weather-field">
+                <span class="field-label">Wind Speed</span>
+                <span class="field-value" id="daily-wind-speed">N/A</span>
+              </div>
+              <div class="daily-weather-field">
+                <span class="field-label">Humidity</span>
+                <span class="field-value" id="daily-humidity">N/A</span>
+              </div>
+              <div class="daily-weather-field">
+                <span class="field-label">Visibility</span>
+                <span class="field-value" id="daily-visibility">N/A</span>
+              </div>
+              <div class="daily-weather-field">
+                <span class="field-label">Sunrise/Sunset</span>
+                <span class="field-value" id="daily-sunrise-and-sunset"
+                  >N/A</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="weather-charts">
+          <div class="header">
+            <h1 class="title">Weather Charts</h1>
+          </div>
+          <div class="point-down">
+            <img src="/images/point-down-512.png" alt="point down" />
+          </div>
+          <div class="point-up" style="display: none">
+            <img src="/images/point-up-512.png" alt="point up" />
+          </div>
+          <div class="charts" style="display: none">
+            <div class="chart" id="temperature-ranges"></div>
+            <div class="chart" id="hourly-weather"></div>
+          </div>
+        </section>
+      </article>
+
+      <script>
+        // debug mode: show the weather display area
+        // const weatherDisplay = document.getElementById("daily-weather");
+        // weatherDisplay.style.display = "block";
+      </script>
+    </div>
+  </body>
 </html>

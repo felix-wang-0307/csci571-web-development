@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+hw2_venv/
+*.log
+.DS_Store
+.env
+*.env
+.env.*
+config/*.env
+.env.local
+.env.development
+.env.test
+.env.production
