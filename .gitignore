@@ -142,4 +142,7 @@ venv
 env
 
 # Pycharm files
-.idea
+.ideagit rm -r --cached .
+git add .
+git commit -m "Update .gitignore to remove unwanted files"
+git push
