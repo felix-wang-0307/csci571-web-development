@@ -1,13 +1,19 @@
 # Cookies
 Cookies are small pieces of data stored in the **browser** by websites to remember user preferences, login status, and other information. They are sent by the server to the client's browser and are included in subsequent requests to the server.
 
-## Elements of a Cookie
-- **Name**: The name of the cookie.
-  - Must 
-- **Content**: The value of the cookie.
+## Attributes of a Cookie
+Required attributes:
+- **Name/Value Pair**: The name of the cookie, followed by an equal sign and the value.
 - **Domain**: The domain that the cookie is valid for.
+
+Optional attributes:
 - **Path**: The path within the domain that the cookie is valid for.
 - **Expires/Max-Age**: The expiration date or maximum age of the cookie.
+- **HttpOnly**: Specifies whether the cookie is accessible only through HTTP requests.
+  - Http Only cookies are invisible to JavaScript
+- **SameSite**: Specifies whether the cookie should be restricted to first-party or same-site requests.
+- **SameParty**: Specifies whether the cookie should be restricted to first-party or same-party requests.
+- **Secure**: Specifies whether the cookie should only be sent over secure connections (HTTPS).
 
 ## Types of Cookies
 - Persistent cookies
@@ -59,6 +65,8 @@ function deleteCookie(name) {
 ## Usage
 - **Session Management**: Cookies are commonly used to manage user sessions on websites (e.g. login status).
 - **Personalization**: Cookies can be used to remember user preferences (e.g. language settings).
+- Cookies can track your IP address
+- Cookies can store any information you provide to a site
 
 ## Cookies Can't:
 - **Store Sensitive Information**: Cookies are stored in plain text and can be read by anyone, so sensitive information should not be stored in cookies.

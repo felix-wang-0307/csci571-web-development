@@ -31,4 +31,5 @@ Angular is a TypeScript-based open-source front-end web application framework. I
 ## React
 React is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of developers. React provides/is:
 
-- 
+- Components are building blocks of React apps
+- Does not implement MVC
