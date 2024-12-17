@@ -3,13 +3,6 @@ My journey into USC CSCI 571 - Web Development.
 
 This repo hosts for the Homeworks
 
-## Homeworks
-### hw1 - Build Static Webpage Using HTML + CSS
-
-### hw2 - Weather Search Service
-Backend: Python Flask
-
-Frontend: HTML + CSS + JavaScript (using `fetch` for API Calls)
 
 ## Course Description
 This course focuses on the World Wide Web. Its focus is to present many of the core technologies that the Web is based upon. 
@@ -34,5 +27,11 @@ In addition, the course will also cover the following subsidiary topics:
 - Cloud/REST access to NoSQL databases (MongoDB Atlas)
 - What’s new on the Web
 
+
 ## Homeworks
-### Homework 1
+### hw1 - Build Static Webpage Using HTML + CSS
+
+### hw2 - Weather Search Service
+Backend: Python Flask
+
+Frontend: HTML + CSS + JavaScript (using `fetch` for API Calls)
