@@ -3,4 +3,7 @@
 	url = https://github.com/felix-wang-0307/weather-search-web.git
 [submodule "homeworks/hw4"]
 	path = homeworks/hw4
-	url = https://github.com/felix-wang-0307/weather-search-ios
+	url = https://github.com/felix-wang-0307/weather-search-ios.git
+[submodule "homeworks/hw2"]
+	path = homeworks/hw2
+	url = https://github.com/felix-wang-0307/simple-weather-search.git
