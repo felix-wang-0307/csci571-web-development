@@ -1,6 +1,3 @@
-[submodule "homeworks/hw2/app"]
-	path = homeworks/hw2/app
-	url = https://github.com/felix-wang-0307/simple-weather-search.git
 [submodule "homeworks/hw3"]
 	path = homeworks/hw3
 	url = https://github.com/felix-wang-0307/weather-search-web.git
